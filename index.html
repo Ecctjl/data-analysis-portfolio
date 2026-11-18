@@ -1,0 +1,495 @@
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="description" content="超级市场销售与利润分析项目，展示基于 Power BI 的销售表现、折扣策略与 SKU 盈利能力分析。">
+<title>超级市场销售与利润分析｜Power BI 项目展示</title>
+
+<style>
+:root{
+--navy:#17324d;
+--blue:#245b86;
+--ink:#1e2936;
+--muted:#64748b;
+--line:#e5eaf0;
+--bg:#f5f7fa;
+--white:#fff;
+--accent:#dceaf5;
+--shadow:0 12px 34px rgba(23,50,77,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:var(--bg);
+color:var(--ink);
+font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+line-height:1.65
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{width:min(1120px,calc(100% - 40px));margin:auto}
+.top{
+background:#fff;
+border-bottom:1px solid var(--line);
+position:sticky;
+top:0;
+z-index:10
+}
+.nav{
+height:66px;
+display:flex;
+align-items:center;
+justify-content:space-between
+}
+.brand{
+font-weight:750;
+color:var(--navy);
+letter-spacing:.02em
+}
+.navlinks{
+display:flex;
+gap:26px;
+font-size:14px;
+color:var(--muted)
+}
+.hero{
+background:linear-gradient(120deg,#17324d,#244e70);
+color:white;
+padding:76px 0 70px
+}
+.eyebrow{
+font-size:12px;
+letter-spacing:.16em;
+text-transform:uppercase;
+color:#c5d9e9
+}
+.hero h1{
+font-size:clamp(32px,5vw,52px);
+line-height:1.2;
+margin:14px 0 16px;
+font-weight:750
+}
+.hero p{
+max-width:720px;
+color:#e1eaf1;
+font-size:17px;
+margin:0
+}
+.chips{
+display:flex;
+flex-wrap:wrap;
+gap:9px;
+margin-top:25px
+}
+.chip{
+border:1px solid #6e8ca5;
+border-radius:30px;
+padding:5px 13px;
+font-size:13px;
+color:#f3f7fa
+}
+.hero-actions{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:30px
+}
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+border-radius:7px;
+padding:10px 17px;
+font-weight:650;
+font-size:14px
+}
+.btn.primary{background:#fff;color:var(--navy)}
+.btn.ghost{border:1px solid #8da7bc;color:white}
+.section{padding:62px 0}
+.section-head{margin-bottom:26px}
+.kicker{
+font-size:12px;
+color:var(--blue);
+font-weight:750;
+letter-spacing:.12em
+}
+.section h2{
+font-size:27px;
+color:var(--navy);
+margin:5px 0 8px
+}
+.intro{
+color:var(--muted);
+max-width:760px;
+margin:0
+}
+.grid{
+display:grid;
+grid-template-columns:repeat(12,1fr);
+gap:20px
+}
+.card{
+background:white;
+border:1px solid var(--line);
+border-radius:12px;
+box-shadow:var(--shadow);
+overflow:hidden
+}
+.project-main{grid-column:span 8}
+.side{grid-column:span 4;padding:23px}
+.project-cover{padding:18px;background:#edf2f6}
+.project-cover img{
+width:100%;
+display:block;
+border-radius:7px;
+border:1px solid #dce3ea
+}
+.project-content{padding:24px}
+.project-content h3{
+font-size:21px;
+color:var(--navy);
+margin:0 0 8px
+}
+.muted{color:var(--muted)}
+.tags{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin:16px 0
+}
+.tag{
+background:#edf3f8;
+color:#345b7a;
+padding:4px 10px;
+border-radius:5px;
+font-size:12px
+}
+.metrics{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-top:18px
+}
+.metric{
+background:#f7f9fb;
+border:1px solid var(--line);
+border-radius:8px;
+padding:12px
+}
+.metric strong{
+display:block;
+font-size:21px;
+color:var(--navy)
+}
+.metric span{
+font-size:12px;
+color:var(--muted)
+}
+.side h3{
+margin:0 0 14px;
+color:var(--navy);
+font-size:17px
+}
+.side ul{
+padding-left:19px;
+margin:0;
+color:var(--muted);
+font-size:14px
+}
+.side li{margin:8px 0}
+.note{
+background:#f0f5f9;
+border-left:3px solid #6e91ad;
+padding:12px 14px;
+border-radius:4px;
+color:#526477;
+font-size:13px;
+margin-top:18px
+}
+.pages{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px
+}
+.page-card{
+background:#fff;
+border:1px solid var(--line);
+border-radius:10px;
+overflow:hidden
+}
+.page-card img{
+display:block;
+width:100%;
+height:auto;
+background:#eef2f5
+}
+.page-card div{padding:13px 15px}
+.page-card strong{
+display:block;
+color:var(--navy);
+font-size:14px
+}
+.page-card span{
+font-size:12px;
+color:var(--muted)
+}
+.pdfbox{
+background:#fff;
+border:1px solid var(--line);
+border-radius:12px;
+overflow:hidden;
+box-shadow:var(--shadow)
+}
+.pdfbar{
+padding:15px 19px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+border-bottom:1px solid var(--line)
+}
+.pdfbar strong{color:var(--navy)}
+.pdfbox iframe{
+display:block;
+width:100%;
+height:760px;
+border:0;
+background:#eef2f5
+}
+.footer{
+padding:28px 0;
+color:#8290a0;
+font-size:12px;
+border-top:1px solid var(--line);
+background:#fff
+}
+.small{font-size:12px;color:var(--muted)}
+
+@media(max-width:760px){
+.navlinks{gap:13px;font-size:12px}
+.hero{padding:55px 0}
+.project-main,.side{grid-column:span 12}
+.pages{grid-template-columns:1fr}
+.pdfbox iframe{height:560px}
+.section{padding:45px 0}
+.metrics{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:420px){
+.wrap{width:min(100% - 26px,1120px)}
+.pdfbar{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+<div class="wrap nav">
+<a class="brand" href="#home">PROJECT PORTFOLIO</a>
+<nav class="navlinks">
+<a href="#project">项目介绍</a>
+<a href="#pages">看板预览</a>
+<a href="#report">PDF 报告</a>
+</nav>
+</div>
+</header>
+
+<main id="home">
+
+<section class="hero">
+<div class="wrap">
+<div class="eyebrow">POWER BI · DATA ANALYSIS PROJECT</div>
+<h1>超级市场销售与利润分析</h1>
+<p>
+基于公开订单数据，围绕销售表现、折扣策略与 SKU 盈利能力开展多维度分析。
+通过数据清洗、指标构建和交互式可视化，探索不同产品、折扣区间及子类别下的利润表现。
+</p>
+
+<div class="chips">
+<span class="chip">Power Query</span>
+<span class="chip">Power BI</span>
+<span class="chip">DAX</span>
+<span class="chip">数据建模</span>
+<span class="chip">多维度分析</span>
+</div>
+
+<div class="hero-actions">
+<a class="btn primary" href="#project">查看项目</a>
+<a class="btn ghost" href="办公电商BI分析.pdf" download>下载项目 PDF</a>
+</div>
+</div>
+</section>
+
+<section class="section" id="project">
+<div class="wrap">
+<div class="section-head">
+<div class="kicker">FEATURED PROJECT</div>
+<h2>项目概览</h2>
+<p class="intro">
+基于 Kaggle 公开订单数据，研究销售表现、折扣策略与 SKU 盈利能力。
+通过五个 Power BI 页面，从业务总览逐步下钻至折扣、SKU、子类别和产品明细。
+</p>
+</div>
+
+<div class="grid">
+
+<article class="card project-main">
+<div class="project-cover">
+<img src="assets/page-1.jpg" alt="Power BI 业务总览页面预览">
+</div>
+
+<div class="project-content">
+<h3>超级市场产品折扣与利润分析看板</h3>
+
+<p class="muted">
+数据范围：2017/01/03—2020/12/30。
+项目重点是构建可筛选、可下钻的分析视图，识别不同产品和折扣区间下的利润表现。
+</p>
+
+<div class="tags">
+<span class="tag">Power Query 数据处理</span>
+<span class="tag">Power BI 数据建模</span>
+<span class="tag">DAX 指标计算</span>
+<span class="tag">多维度分析</span>
+</div>
+
+<div class="metrics">
+<div class="metric">
+<strong>733,284</strong>
+<span>业务总览页当前筛选销售额</span>
+</div>
+<div class="metric">
+<strong>93,432</strong>
+<span>业务总览页当前筛选利润额</span>
+</div>
+<div class="metric">
+<strong>12.74%</strong>
+<span>业务总览页当前筛选利润率</span>
+</div>
+<div class="metric">
+<strong>1,687</strong>
+<span>业务总览页当前筛选订单数</span>
+</div>
+</div>
+
+<p class="small">
+以上为 PDF 业务总览页面展示的筛选结果，不代表整个数据集所有年份的汇总值。
+</p>
+</div>
+</article>
+
+<aside class="card side">
+<h3>项目分析内容</h3>
+<ul>
+<li>业务总览：销售额、利润、利润率、订单数及趋势。</li>
+<li>折扣分析：折扣与利润率分布、不同折扣区间的销售利润表现。</li>
+<li>SKU 分析：Top 20 帕累托利润、亏损 SKU 排名及利润结构。</li>
+<li>发现与建议：子类别利润表现、负利润销售占比及情景测算。</li>
+<li>SKU 明细审查：产品销售、利润率、折扣和建议行动。</li>
+</ul>
+
+<div class="note">
+项目使用公开数据进行个人分析。
+看板中的“可优化利润”等数值属于特定筛选条件和测算规则下的情景估算，不代表企业实际实现的利润增长。
+</div>
+
+<div style="margin-top:20px">
+<a class="btn" style="background:#17324d;color:#fff" href="#report">阅读完整 PDF 报告</a>
+</div>
+</aside>
+
+</div>
+</div>
+</section>
+
+<section class="section" id="pages" style="background:#eef2f6">
+<div class="wrap">
+<div class="section-head">
+<div class="kicker">DASHBOARD PREVIEW</div>
+<h2>五个分析页面</h2>
+<p class="intro">
+以下为 Power BI 看板页面预览。静态图片用于快速浏览，完整内容可在下方打开 PDF。
+</p>
+</div>
+
+<div class="pages">
+
+<div class="page-card">
+<img src="assets/page-1.jpg" alt="第 1 页：业务总览">
+<div>
+<strong>01 · 业务总览</strong>
+<span>核心 KPI、销售利润趋势、品类贡献与筛选器</span>
+</div>
+</div>
+
+<div class="page-card">
+<img src="assets/page-2.jpg" alt="第 2 页：折扣分析">
+<div>
+<strong>02 · 折扣分析</strong>
+<span>折扣与利润率分布、折扣区间表现</span>
+</div>
+</div>
+
+<div class="page-card">
+<img src="assets/page-3.jpg" alt="第 3 页：SKU 分析">
+<div>
+<strong>03 · SKU 分析</strong>
+<span>帕累托分析、亏损 Top 10、SKU 利润结构</span>
+</div>
+</div>
+
+<div class="page-card">
+<img src="assets/page-4.jpg" alt="第 4 页：发现与建议">
+<div>
+<strong>04 · 发现与建议</strong>
+<span>子类别战略矩阵、负利润销售占比及情景测算</span>
+</div>
+</div>
+
+<div class="page-card">
+<img src="assets/page-5.jpg" alt="第 5 页：SKU 明细审查">
+<div>
+<strong>05 · SKU 明细审查</strong>
+<span>产品销售表现、利润率、折扣与建议行动</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<section class="section" id="report">
+<div class="wrap">
+<div class="section-head">
+<div class="kicker">FULL REPORT</div>
+<h2>完整项目报告</h2>
+<p class="intro">
+可以直接在网页中阅读，也可以下载 PDF 文件。
+</p>
+</div>
+
+<div class="pdfbox">
+<div class="pdfbar">
+<strong>办公电商BI分析.pdf</strong>
+<a class="btn" style="background:#17324d;color:white" href="办公电商BI分析.pdf" download>下载 PDF</a>
+</div>
+<iframe src="办公电商BI分析.pdf" title="Power BI 项目 PDF 报告"></iframe>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+<div class="wrap">
+基于公开数据集的个人数据分析项目展示
+</div>
+</footer>
+
+</body>
+</html>
